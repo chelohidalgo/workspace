@@ -19,3 +19,4 @@ build
 .gradle/
 ruleset.xml
 user.gradle
+bin/com/merchant
