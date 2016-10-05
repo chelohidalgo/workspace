@@ -1,0 +1,29 @@
+<project name="Merchant" basedir="../">
+
+	<!-- Local system paths -->
+	<property name="build.dir" value="build" />
+	<property name="classes.dir" value="classes" />
+	<property name="merchant.jarFile" value="merchant.jar" />
+	<property name="src.dir" value="${basedir}/src" />
+	
+	<target name="init">
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+	</target>
+	<target name="build" depends="compile">
+		<jar destfile="${build.dir}/${merchant.jarFile}" basedir="${classes.dir}" >
+			<manifest>
+					<attribute name="Built-By" value="Marcelo Hidalgo" />
+					<attribute name="Main-Class" value="com.merchant.clases.Inicio" />
+					
+			</manifest>
+		</jar>
+	</target>
+	<target name="clean" description="Prepare for clean build">
+		<delete dir="${classes.dir}" />
+		<delete dir="${build.dir}" />
+	</target>
+</project>
