@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+    
+<!-- 	<bean id="mongoDbDataSource" class="CLASE PARA CONEXION"> -->
+<!-- 		<property name="url" value="remote:10.190.6.102/<BASE>" /> -->
+<!-- 		<property name="userName" value="root" /> -->
+<!-- 		<property name="password" value="root" /> -->
+<!-- 		<property name="maxSizePool" value="100"/> -->
+<!-- 	</bean> -->
+
+	<import resource="service/financial-chat-service-beans.xml" />
+	<import resource="gestor/financial-chat-gestor-beans.xml" />
+	<import resource="dao/financial-chat-dao-beans.xml" />
+
+</beans>
