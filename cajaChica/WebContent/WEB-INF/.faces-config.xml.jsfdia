@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#home.xhtml" PATH="/pages/home.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#home.xhtml:0" NAME="item"
+   PATH="/pages/home.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="menu::#pages#menu.xhtml" NAME="output"
+    PATH="/pages/menu.xhtml" TARGET="rules:#pages#menu.xhtml"
+    TITLE="menu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="pageRequest::#pages#request.xhtml"
+    NAME="output1" PATH="/pages/request.xhtml"
+    TARGET="rules:#pages#request.xhtml" TITLE="pageRequest" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#menu.xhtml" PATH="/pages/menu.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#menu.xhtml:0" NAME="item"
+   PATH="/pages/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="income::#pages#registerIncome.xhtml"
+    NAME="output" PATH="/pages/registerIncome.xhtml"
+    TARGET="rules:#pages#registerIncome.xhtml" TITLE="income" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="home::#pages#home.xhtml" NAME="output1"
+    PATH="/pages/home.xhtml" TARGET="rules:#pages#home.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="history::#pages#historyRequest.xhtml"
+    NAME="output2" PATH="/pages/historyRequest.xhtml"
+    TARGET="rules:#pages#historyRequest.xhtml" TITLE="history" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#request.xhtml"
+  PATH="/pages/request.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#request.xhtml:0" NAME="item"
+   PATH="/pages/request.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#pages#home.xhtml" NAME="output"
+    PATH="/pages/home.xhtml" TARGET="rules:#pages#home.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#registerIncome.xhtml"
+  PATH="/pages/registerIncome.xhtml" SHAPE="464,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#registerIncome.xhtml:0" NAME="item"
+   PATH="/pages/registerIncome.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#pages#menu.xhtml" NAME="output"
+    PATH="/pages/menu.xhtml" TARGET="rules:#pages#menu.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#historyRequest.xhtml"
+  PATH="/pages/historyRequest.xhtml" SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#historyRequest.xhtml:0" NAME="item"
+   PATH="/pages/historyRequest.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#pages#menu.xhtml" NAME="output"
+    PATH="/pages/menu.xhtml" TARGET="rules:#pages#menu.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

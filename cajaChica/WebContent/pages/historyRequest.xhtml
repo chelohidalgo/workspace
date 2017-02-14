@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">Historia de solicitudes</ui:define>
+	<ui:define name="pageHeader">Historia</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:messages />
+			<h:commandButton action="home" value="Atras" />
+			<h1>Solicitudes - Historial</h1>
+			<h:dataTable value="#{historyRequestController.withdraws}"
+				var="detalle">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="No." />
+					</f:facet>
+					<h:outputText value="#{detalle.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Usuario" />
+					</f:facet>
+					<h:outputText value="#{detalle.userId}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Estado" />
+					</f:facet>
+					<h:outputText value="#{detalle.state}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cantidad" />
+					</f:facet>
+					<h:outputText value="#{detalle.value}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha de solicitud" />
+					</f:facet>
+					<h:outputText value="#{detalle.dateWithdrawOn}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha de entrega" />
+					</f:facet>
+					<h:outputText value="#{detalle.dateProcessedOn}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

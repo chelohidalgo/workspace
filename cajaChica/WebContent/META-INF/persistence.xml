@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+	<persistence-unit name="cajaChica" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<jta-data-source>java:/jdbc/postgresds</jta-data-source>
+		<class>net.softwareevolutivo.dao.entity.Account</class>
+		<class>net.softwareevolutivo.dao.entity.Money</class>
+		<class>net.softwareevolutivo.dao.entity.Withdraw</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.show_sql" value="true" />
+			<property name="eclipselink.logging.level" value="ALL" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+		</properties>
+
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">Registro de dinero</ui:define>
+	<ui:define name="pageHeader">Ingresos - Caja chica</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:messages />
+			<h:commandButton action="home" value="Atras" />
+			<p:panel header="Seleccione la fecha de registro y cantidad">
+				<h:panelGrid columns="2">
+					<h:outputText value="Fecha:" />
+					<h:panelGroup>
+						<p:calendar mode="popup" showOn="button"
+							value="#{moneyController.moneySession.money.dateIncomeOn}"
+							pattern="dd/MM/yyyy" size="10">
+						</p:calendar>
+						<h:outputText value="dd/MM/yyyy" />
+					</h:panelGroup>
+					<h:outputText value="Cantidad:" />
+					<h:inputText value="#{moneyController.moneySession.money.amount}" />
+
+				</h:panelGrid>
+				<h:commandButton action="#{moneyController.registerIncome}"
+					value="Registrar" />
+			</p:panel>
+			<hr></hr>
+			<h:panelGrid columns="2">
+				<h:outputText value="El saldo actual es:" />
+				<h:outputText value="#{moneyController.amountAvailable}" />
+			</h:panelGrid>
+
+			<h:outputText value="Solicitudes pendientes" />
+			<h:dataTable value="#{moneyController.moneySession.withdraws}"
+				var="detalle">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="No." />
+					</f:facet>
+					<h:outputText value="#{detalle.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Usuario" />
+					</f:facet>
+					<h:outputText value="#{detalle.userId}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Cantidad" />
+					</f:facet>
+					<h:outputText value="#{detalle.value}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Fecha de solicitud" />
+					</f:facet>
+					<h:outputText value="#{detalle.dateWithdrawOn}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:commandButton value="Aceptar"
+						action="#{moneyController.processRequest(detalle)}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

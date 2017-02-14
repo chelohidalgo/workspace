@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+<!-- 	<Resource name="jdbc/mkyongdb" auth="Container" type="javax.sql.DataSource" -->
+<!-- 		maxActive="50" maxIdle="30" maxWait="10000" username="mysqluser" -->
+<!-- 		password="mysqlpassword" driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 		url="jdbc:mysql://localhost:3306/mkyongdb" /> -->
+
+	<Resource name="jdbc/postgres" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="admin"
+		password="admin" driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/test" JtaManaged="true"/>
+
+</Context>

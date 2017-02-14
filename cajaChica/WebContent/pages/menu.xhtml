@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/common.xhtml">
+	<ui:define name="pageTitle">Menu</ui:define>
+	<ui:define name="pageHeader">Menu</ui:define>
+	<ui:define name="body">
+		<h:form>
+			<h:commandButton action="home" value="Atras" />
+			<p:panel header="Seleccione la opcion deseada">
+				<p:panelGrid columns="1">
+					<p:commandButton value="Registrar ingreso de dinero / Aceptar solicitudes"
+						action="income" icon="ui-icon-disk">
+					</p:commandButton>
+					<p:commandButton value="Historial de solicitudes" action="history"
+						icon="ui-icon-disk" />
+				</p:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
