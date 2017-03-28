@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 
 import com.merchant.util.Constantes;
 import com.merchant.util.NumeroUtil;
+import com.merchant.util.UnidadUtil;
 import com.merchant.util.enumeraciones.NumeroRomanoEnum;
 import com.merchant.util.enumeraciones.util.NumeroRomanoEnumUtil;
 
@@ -25,7 +26,6 @@ import com.merchant.util.enumeraciones.util.NumeroRomanoEnumUtil;
 public class Inicio {
 	
 	protected static List<Unidad> unidades;
-	protected static List<Metal> metales;
 	private static final int NUMERO_OCHO = 8;
 	
 	/**
@@ -257,15 +257,16 @@ public class Inicio {
 	 */
 	private static void presentarMensajesIniciales() {
 		System.out.println("---******************************** BIENVENIDO ****************************************---");
-		System.out.println("---*** CONVERSOR NUMEROS ROMANOS A UNIDADES INTERGALACTICAS ***---");
+		System.out.println("---*** CONVERSOR UNIDADES INTERGALACTICAS ***---");
 		System.out.println("--------NUMEROS ROMANOS Y VALORES POSIBLES----------");
-		System.out.println("1.- I \t 1");
-		System.out.println("2.- V \t 5");
-		System.out.println("3.- X \t 10");
-		System.out.println("4.- L \t 50");
-		System.out.println("5.- C \t 100");
-		System.out.println("6.- D \t 500");
-		System.out.println("7.- M \t 1000");
+		System.out.println("1.- SIMBOLO \t VALOR");
+		System.out.println("1.- I \t \t 1");
+		System.out.println("2.- V \t \t 5");
+		System.out.println("3.- X \t \t 10");
+		System.out.println("4.- L \t \t 50");
+		System.out.println("5.- C \t \t 100");
+		System.out.println("6.- D \t \t 500");
+		System.out.println("7.- M \t \t 1000");
 		System.out.println("---*** INGRESE EL NUMERO DE UNIDADES DE MEDIDA A DEFINIR (MAX 7) ***---");
 	}
 
@@ -320,12 +321,17 @@ public class Inicio {
 	private static Unidad instanciarUnidad(Scanner entradaEscaner, int numeroUnidad, List<Unidad> unidades) {
 		String nombre;
 		String simbolo;
-		Unidad unidad = new Unidad();
+		
 		System.out.print("Unidad " + numeroUnidad + ": Nombre:");
 		nombre = entradaEscaner.nextLine();
-		unidad.setNombre(nombre);
-		System.out.print("Unidad " + numeroUnidad + ": Valor(" + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
+		
+		while (UnidadUtil.existUnitByName(unidades, nombre)){
+			
+		}
+		System.out.print("Unidad " + numeroUnidad + ": Valor( Numeros / " + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
 		simbolo = entradaEscaner.nextLine();
+		
+		Unidad unidad = new Unidad();
 		simbolo = validarSimboloIngresado(entradaEscaner, numeroUnidad, simbolo);
 		while (validarExistenciaDeUnidadSegunSimbolo(unidades, simbolo, unidad) == null) {
 			System.out.print("Unidad " + numeroUnidad + ": Valor(" + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");

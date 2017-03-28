@@ -15,7 +15,7 @@ package com.merchant.clases;
 public class Unidad {
 
 	private String nombre;
-	private int valor;
+	private Double valor;
 	
 	public String getNombre() {
 		return nombre;
@@ -25,11 +25,11 @@ public class Unidad {
 		this.nombre = nombre;
 	}
 	
-	public int getValor() {
+	public Double getValor() {
 		return valor;
 	}
 	
-	public void setValor(int valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 }

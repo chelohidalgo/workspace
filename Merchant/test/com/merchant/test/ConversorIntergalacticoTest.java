@@ -109,7 +109,7 @@ public class ConversorIntergalacticoTest extends TestCase{
 	
 	/**
 	 * <b>
-	 * Lee la opcion deseada a realizar en el programa 1. Calcular a Unidades Intergalacticas/ 2Calcular Valor de Metales.
+	 * Lee la opcion deseada a realizar en el programa 1. Calcular a Unidades Intergalacticas/ 2. Calcular Valor de Metales.
 	 * </b>
 	 * <p>[Author: Marcelo, Date: 13/02/2014]</p>
 	 *
