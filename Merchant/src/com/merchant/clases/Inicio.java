@@ -1,10 +1,11 @@
 /*
  * Copyright 2014
  * Todos los derechos reservados
- */ 
+ */
 package com.merchant.clases;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -15,26 +16,28 @@ import com.merchant.util.UnidadUtil;
 import com.merchant.util.enumeraciones.NumeroRomanoEnum;
 import com.merchant.util.enumeraciones.util.NumeroRomanoEnumUtil;
 
-/** 
- * <b>
- * Pantalla de inicio del programa convertidor de numeros romanos a unidades intergalacticas.
- * </b>
- *  
+/**
+ * <b> Pantalla de inicio del programa convertidor de numeros romanos a unidades
+ * intergalacticas. </b>
+ * 
  * @author Marcelo Hidalgo
- * @version $Revision: 1.0 $ <p>[$Author: Marcelo Hidalgo$, $Date: 11/02/2014 $]</p>
+ * @version $Revision: 1.0 $
+ *          <p>
+ *          [$Author: Marcelo Hidalgo$, $Date: 11/02/2014 $]
+ *          </p>
  */
 public class Inicio {
-	
+
 	protected static List<Unidad> unidades;
 	private static final int NUMERO_OCHO = 8;
-	
+
 	/**
-	 * <b>
-	 * Metodo Principal que ejecuta  el funcionamiento del conversor.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 13/02/2014]</p>
+	 * <b> Metodo Principal que ejecuta el funcionamiento del conversor. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 13/02/2014]
+	 * </p>
 	 *
-	 */ 
+	 */
 	public static void main(String[] args) {
 		Scanner entradaEscaner = new Scanner(System.in);
 		presentarMensajesIniciales();
@@ -43,10 +46,10 @@ public class Inicio {
 		presentarNuevasUnidades();
 		String opcion = presentarMenuDeOpciones(entradaEscaner);
 		long resultado = Long.valueOf(Constantes.VALOR_CERO);
-		if (opcion.equals(String.valueOf(Constantes.VALOR_UNO))){
+		if (opcion.equals(String.valueOf(Constantes.VALOR_UNO))) {
 			resultado = convertirNuevaUnidadesToArabicos(entradaEscaner, resultado);
 			System.out.println("El resultado es:" + resultado);
-		}else {
+		} else {
 			String numeroCantidadMetales = leerNumeroCantidadMetales(entradaEscaner);
 			metales = instanciarMetales(entradaEscaner, numeroCantidadMetales);
 			presentarMetalesAComercializar();
@@ -55,15 +58,15 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Calcula la equivalencia en arabicos del metal a comercializar.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 13/02/2014]</p>
+	 * <b> Calcula la equivalencia en arabicos del metal a comercializar. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 13/02/2014]
+	 * </p>
 	 *
 	 * @param entradaEscaner
 	 * @param resultado
-	 */ 
-	private static void calcularEquivalenciaDeMetal(Scanner entradaEscaner,	long resultado) {
+	 */
+	private static void calcularEquivalenciaDeMetal(Scanner entradaEscaner, long resultado) {
 		System.out.println("Ingrese el nombre del metal:");
 		String metal = entradaEscaner.nextLine();
 		while (Constantes.CADENA_VACIA.equals(Metal.obtenerValorSegunMetal(metales, metal))) {
@@ -77,12 +80,12 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Presenta los metales a comercializar.
-	 * </b>
-	 * <p>[Author: Marcelo, Date: 13/02/2014]</p>
+	 * <b> Presenta los metales a comercializar. </b>
+	 * <p>
+	 * [Author: Marcelo, Date: 13/02/2014]
+	 * </p>
 	 *
-	 */ 
+	 */
 	private static void presentarMetalesAComercializar() {
 		System.out.println("---*** METALES A COMERCIALIZAR ***---");
 		for (Metal metal : metales) {
@@ -91,15 +94,17 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Transforma las nuevas unidades creadas a numeros arabicos.
-	 * </b>
-	 * <p>[Author: Marcelo, Date: 13/02/2014]</p>
+	 * <b> Transforma las nuevas unidades creadas a numeros arabicos. </b>
+	 * <p>
+	 * [Author: Marcelo, Date: 13/02/2014]
+	 * </p>
 	 *
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param resultado resultado
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param resultado
+	 *            resultado
 	 * @return long
-	 */ 
+	 */
 	private static long convertirNuevaUnidadesToArabicos(Scanner entradaEscaner, long resultado) {
 		String[] unidadesACalcular = leerCantidadAConvertir(entradaEscaner);
 		System.out.println("Convirtiendo...");
@@ -108,43 +113,47 @@ public class Inicio {
 	}
 
 	/**
-	 * Presenta nen pantalla las opciones a realizar el sistema 
+	 * Presenta nen pantalla las opciones a realizar el sistema
 	 *
-	 * @author  mkarcelo Hidalgo - ALES
+	 * @author mkarcelo Hidalgo - ALES
 	 * @version 13/02/2014
-	 *  
+	 * 
 	 */
 	public static String presentarMenuDeOpciones(Scanner entradaEscaner) {
 		System.out.println("---*** Que desea hacer?***---");
 		System.out.println("1. Calcular a Unidades Intergalacticas");
 		System.out.println("2. Calcular Valor de Metales");
 		String opcion = entradaEscaner.nextLine();
-		while (!NumeroUtil.esNumero(opcion) && 
-				(opcion.equals(Constantes.CADENA_VALOR_UNO) || opcion.equals(Constantes.CADENA_VALOR_DOS))) {
-			System.out.println("Número invalido, intente nuevamente");	
+		while (!NumeroUtil.esNumero(opcion)
+				&& (opcion.equals(Constantes.CADENA_VALOR_UNO) || opcion.equals(Constantes.CADENA_VALOR_DOS))) {
+			System.out.println("Número invalido, intente nuevamente");
 			opcion = entradaEscaner.nextLine();
 		}
 		return opcion;
 	}
 
 	/**
-	 * <b>
-	 * Calcula la cantidad ingresada en las nuevas unidades de medida a numeros arabicos.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 13/02/2014]</p>
+	 * <b> Calcula la cantidad ingresada en las nuevas unidades de medida a
+	 * numeros arabicos. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 13/02/2014]
+	 * </p>
 	 *
-	 * @param unidades lista de unidades posibles
-	 * @param unidadesACalcular arreglo con cada una de/las unidades a calcular 
+	 * @param unidades
+	 *            lista de unidades posibles
+	 * @param unidadesACalcular
+	 *            arreglo con cada una de/las unidades a calcular
 	 * @param resultado
 	 * @return long resultado obtenido
-	 */ 
-	public static long calcularNumero(List<Unidad> unidades,String[] unidadesACalcular, long resultado) {
+	 */
+	public static long calcularNumero(List<Unidad> unidades, String[] unidadesACalcular, long resultado) {
 		for (int i = Constantes.VALOR_CERO; i < unidadesACalcular.length - Constantes.VALOR_UNO; i++) {
 			String unidad = unidadesACalcular[i];
 			String unidadSiguiente = unidadesACalcular[i + Constantes.VALOR_UNO];
-			if(obtenerValorSegunNombreUnidad(unidades, unidad) < obtenerValorSegunNombreUnidad(unidades, unidadSiguiente)){
+			if (obtenerValorSegunNombreUnidad(unidades, unidad) < obtenerValorSegunNombreUnidad(unidades,
+					unidadSiguiente)) {
 				resultado -= obtenerValorSegunNombreUnidad(unidades, unidad);
-			}else {
+			} else {
 				resultado += obtenerValorSegunNombreUnidad(unidades, unidad);
 			}
 		}
@@ -154,14 +163,17 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Recupera un arreglo conteniendo cada uno de las unidades a calcular segun las nuevas unidades de medida.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 13/02/2014]</p>
+	 * <b> Recupera un arreglo conteniendo cada uno de las unidades a calcular
+	 * segun las nuevas unidades de medida. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 13/02/2014]
+	 * </p>
 	 *
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @return devuelve  un arreglo conteniendo cada uno de las unidades a calcular
-	 */ 
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @return devuelve un arreglo conteniendo cada uno de las unidades a
+	 *         calcular
+	 */
 	private static String[] leerCantidadAConvertir(Scanner entradaEscaner) {
 		System.out.println("Ingrese la cantidad a convertir");
 		String cantidadAConvertir = entradaEscaner.nextLine();
@@ -174,16 +186,17 @@ public class Inicio {
 		}
 		return unidadesACalcular;
 	}
-	
+
 	/**
-	 * <b>
-	 * Recupera el numero de nuevas unidades de medida a crear.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Recupera el numero de nuevas unidades de medida a crear. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 *
-	 * @param entradaEscaner objeto que lee desde consola
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
 	 * @return cantidad de unidades nuevas a crear
-	 */ 
+	 */
 	public static String leerNumeroDeCantidadesNuevas(Scanner entradaEscaner) {
 		String cantidadUnidadesMedida = entradaEscaner.nextLine();
 		while (!validarCantidadUnidadesDeMedida(cantidadUnidadesMedida)) {
@@ -192,16 +205,17 @@ public class Inicio {
 		}
 		return cantidadUnidadesMedida;
 	}
-	
+
 	/**
-	 * <b>
-	 * Recupera el numero de nuevas unidades de medida a crear.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Recupera el numero de nuevas unidades de medida a crear. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 *
-	 * @param entradaEscaner objeto que lee desde consola
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
 	 * @return cantidad de unidades nuevas a crear
-	 */ 
+	 */
 	private static String leerNumeroCantidadMetales(Scanner entradaEscaner) {
 		System.out.println("---*** INGRESE EL NUMERO DE METALES A COMERCIALIZAR ***---");
 		String cantidadMetales = entradaEscaner.nextLine();
@@ -211,21 +225,23 @@ public class Inicio {
 		}
 		return cantidadMetales;
 	}
-	
+
 	/**
-	 * <b>
-	 * Recupera el valor de la unidad de medida enviada.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Recupera el valor de la unidad de medida enviada. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 *
-	 *@param unidades lista de nuevas unidades de medida
-	 *@param nombreUnidad nombre de la unidad
-	 *@return int valor de la unidad enviada, sino existe devuelve CERO
+	 * @param unidades
+	 *            lista de nuevas unidades de medida
+	 * @param nombreUnidad
+	 *            nombre de la unidad
+	 * @return int valor de la unidad enviada, sino existe devuelve CERO
 	 */
-	public static int obtenerValorSegunNombreUnidad(List<Unidad> unidades,String nombreUnidad) {
+	public static int obtenerValorSegunNombreUnidad(List<Unidad> unidades, String nombreUnidad) {
 		int valor = Constantes.VALOR_CERO;
 		for (Unidad unidad : unidades) {
-			if(unidad.getNombre().equals(nombreUnidad)){
+			if (unidad.getNombre().equals(nombreUnidad)) {
 				valor = unidad.getValor();
 				break;
 			}
@@ -233,12 +249,11 @@ public class Inicio {
 		return valor;
 	}
 
-
 	/**
-	 * <b>
-	 * Imprime en consola las nuevas unidades de medida.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Imprime en consola las nuevas unidades de medida. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
 	 */
 	private static void presentarNuevasUnidades() {
@@ -249,14 +264,15 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Imprime en consola los mensajes iniciales.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
-	 *  
+	 * <b> Imprime en consola los mensajes iniciales. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
+	 * 
 	 */
 	private static void presentarMensajesIniciales() {
-		System.out.println("---******************************** BIENVENIDO ****************************************---");
+		System.out
+				.println("---******************************** BIENVENIDO ****************************************---");
 		System.out.println("---*** CONVERSOR UNIDADES INTERGALACTICAS ***---");
 		System.out.println("--------NUMEROS ROMANOS Y VALORES POSIBLES----------");
 		System.out.println("1.- SIMBOLO \t VALOR");
@@ -271,13 +287,15 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Construye los objetos nuevos de unidad de medida.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Construye los objetos nuevos de unidad de medida. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param cantidadUnidadesMedida cantidad de nuevas unidades a construir
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param cantidadUnidadesMedida
+	 *            cantidad de nuevas unidades a construir
 	 * @return List<Unidad> lista de unidades instanciadas
 	 */
 	public static List<Unidad> instanciarUnidadesMedida(Scanner entradaEscaner, String cantidadUnidadesMedida) {
@@ -288,15 +306,17 @@ public class Inicio {
 		}
 		return unidades;
 	}
-	
+
 	/**
-	 * <b>
-	 * Construye los objetos nuevos de metales a comercializar.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Construye los objetos nuevos de metales a comercializar. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param cantidadMetales cantidad de metales a comercializar
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param cantidadMetales
+	 *            cantidad de metales a comercializar
 	 * @return List<Metal> lista de unidades instanciadas
 	 */
 	private static List<Metal> instanciarMetales(Scanner entradaEscaner, String cantidadMetales) {
@@ -309,46 +329,55 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Construye los objetos nuevos de unidad de medida.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Construye los objetos nuevos de unidad de medida. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param numeroUnidad numero de la unidad a instanciar
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param numeroUnidad
+	 *            numero de la unidad a instanciar
 	 * @return Unidad devuelve la unidad instanciada
 	 */
 	private static Unidad instanciarUnidad(Scanner entradaEscaner, int numeroUnidad, List<Unidad> unidades) {
-		String nombre;
-		String simbolo;
-		
 		System.out.print("Unidad " + numeroUnidad + ": Nombre:");
-		nombre = entradaEscaner.nextLine();
-		
-		while (UnidadUtil.existUnitByName(unidades, nombre)){
-			
+		String nombre = entradaEscaner.nextLine();
+
+		// separo por medio de los espacios
+		String[] nombres = nombre.split("");
+		if(nombres.length > Constantes.VALOR_UNO){
+			// encuentro los valores posibles
+			for (String cadena : nombres) {
+				UnidadUtil.existUnitByName(unidades, cadena) ? 
+			}
+				
 		}
-		System.out.print("Unidad " + numeroUnidad + ": Valor( Numeros / " + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
-		simbolo = entradaEscaner.nextLine();
-		
+
+		while (UnidadUtil.existUnitByName(unidades, nombre)) {
+			System.out.print("Unidad " + nombre + " existente, ingrese nuevamente");
+			nombre = entradaEscaner.nextLine();
+		}
+		System.out.print("Unidad " + numeroUnidad + ": Valor( Arabicos / "
+				+ NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
+		String valor = entradaEscaner.nextLine();
+
 		Unidad unidad = new Unidad();
-		simbolo = validarSimboloIngresado(entradaEscaner, numeroUnidad, simbolo);
-		while (validarExistenciaDeUnidadSegunSimbolo(unidades, simbolo, unidad) == null) {
-			System.out.print("Unidad " + numeroUnidad + ": Valor(" + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
-			simbolo = entradaEscaner.nextLine();
-		}
-		unidad = validarExistenciaDeUnidadSegunSimbolo(unidades, simbolo, unidad);
+		unidad.setNombre(nombre);
+		unidad.setValor(Double.valueOf(valor));
 		return unidad;
 	}
-	
+
 	/**
-	 * <b>
-	 * Construye los objetos nuevos de unidad de medida.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Construye los objetos nuevos de unidad de medida. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param numeroUnidad numero de la unidad a instanciar
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param numeroUnidad
+	 *            numero de la unidad a instanciar
 	 * @return Unidad devuelve la unidad instanciada
 	 */
 	private static Metal instanciarMetal(Scanner entradaEscaner, int numeroMetal, List<Metal> metales) {
@@ -364,29 +393,33 @@ public class Inicio {
 			System.out.print("Valor incorrecto, ingrese nuevamente:");
 			valor = entradaEscaner.nextLine();
 		}
-		metal.setValor(valor); 
+		metal.setValor(valor);
 		return metal;
 	}
 
 	/**
-	 * <b>
-	 * Valida si la nueva unidad a registrar ya fue considerada anteriormente, sino es el caso asigna su respectivo valor.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Valida si la nueva unidad a registrar ya fue considerada
+	 * anteriormente, sino es el caso asigna su respectivo valor. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param unidades lista de unidades
-	 * @param simbolo nombre o simbolo de la unidad
-	 * @param unidad de medida
+	 * @param unidades
+	 *            lista de unidades
+	 * @param simbolo
+	 *            nombre o simbolo de la unidad
+	 * @param unidad
+	 *            de medida
 	 * @return Unidad unidad de medida
 	 */
 	public static Unidad validarExistenciaDeUnidadSegunSimbolo(List<Unidad> unidades, String simbolo, Unidad unidad) {
 		if (unidades.isEmpty()) {
 			unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
-		}else {
+		} else {
 			for (Unidad unidadAlmacenada : unidades) {
 				if (unidadAlmacenada.getValor() == asignarValorSegunNumeroRomano(simbolo.toUpperCase())) {
 					System.out.println("Ya existe una unidad almacenada con el mismo simbolo");
-				}else {
+				} else {
 					unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
 				}
 			}
@@ -395,56 +428,62 @@ public class Inicio {
 	}
 
 	/**
-	 * <b>
-	 * Valida si el simbolo escogido para la nueva unidad es valido.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Valida si el simbolo escogido para la nueva unidad es valido. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param entradaEscaner objeto que lee desde consola
-	 * @param numeroUnidad numero de unidad a instanciar
-	 * @param simbolo nombre de la unidad enviado
-	 * @return 
+	 * @param entradaEscaner
+	 *            objeto que lee desde consola
+	 * @param numeroUnidad
+	 *            numero de unidad a instanciar
+	 * @param simbolo
+	 *            nombre de la unidad enviado
+	 * @return
 	 */
-	public static String validarSimboloIngresado(Scanner entradaEscaner,int numeroUnidad, String simbolo) {
+	public static String validarSimboloIngresado(Scanner entradaEscaner, int numeroUnidad, String simbolo) {
 		while (asignarValorSegunNumeroRomano(simbolo.toUpperCase()) == Constantes.VALOR_CERO) {
-			System.out.print("Unidad " + numeroUnidad + ": Valor(" + NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
+			System.out.print("Unidad " + numeroUnidad + ": Valor("
+					+ NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
 			simbolo = entradaEscaner.next();
 		}
 		return simbolo;
 	}
 
 	/**
-	 * <b>
-	 * Asigna el valor de la nueva unidad tomando como referencia su equivalencia en numeros romanos.
-	 * </b>
-	 * <p>[Author: Marcelo Hidalgo, Date: 12/02/2014]</p>
+	 * <b> Asigna el valor de la nueva unidad tomando como referencia su
+	 * equivalencia en numeros romanos. </b>
+	 * <p>
+	 * [Author: Marcelo Hidalgo, Date: 12/02/2014]
+	 * </p>
 	 * 
-	 * @param simbolo nombre de la unidad
+	 * @param simbolo
+	 *            nombre de la unidad
 	 */
 	private static int asignarValorSegunNumeroRomano(String simbolo) {
 		NumeroRomanoEnum numeroRomanoEnum = NumeroRomanoEnumUtil.obtenerNumeroRomanoEnumPorSimbolo(simbolo);
 		int valor = Constantes.VALOR_CERO;
 		if (numeroRomanoEnum != null) {
-			valor = numeroRomanoEnum.getValor();	
-		}else {
+			valor = numeroRomanoEnum.getValor();
+		} else {
 			System.out.println("El simbolo ingresado no es correcto");
 		}
 		return valor;
 	}
 
-
 	/**
-	 * Valida si la cantidad ingresada es un numero y si es menor a 8 
+	 * Valida si la cantidad ingresada es un numero y si es menor a 8
 	 *
-	 * @author  Marcelo Hidalgo - ALES
+	 * @author Marcelo Hidalgo - ALES
 	 * @version 11/02/2014
 	 * 
 	 * @param cantidadUnidadesMedida
 	 * @return verdadero si cumple las dos condiciones
 	 */
 	private static boolean validarCantidadUnidadesDeMedida(String cantidadUnidadesMedida) {
-		return NumeroUtil.esNumero(cantidadUnidadesMedida)	&& 
-			(Integer.valueOf(cantidadUnidadesMedida) > Constantes.VALOR_CERO && Integer.valueOf(cantidadUnidadesMedida) < NUMERO_OCHO);
+		return NumeroUtil.esNumero(cantidadUnidadesMedida)
+				&& (Integer.valueOf(cantidadUnidadesMedida) > Constantes.VALOR_CERO
+						&& Integer.valueOf(cantidadUnidadesMedida) < NUMERO_OCHO);
 	}
 
 }
