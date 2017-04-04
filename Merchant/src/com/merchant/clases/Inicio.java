@@ -5,7 +5,6 @@
 package com.merchant.clases;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -44,40 +43,42 @@ public class Inicio {
 		String numeroCantidadUnidadesNueva = leerNumeroDeCantidadesNuevas(entradaEscaner);
 		unidades = instanciarUnidadesMedida(entradaEscaner, numeroCantidadUnidadesNueva);
 		presentarNuevasUnidades();
-		String opcion = presentarMenuDeOpciones(entradaEscaner);
-		long resultado = Long.valueOf(Constantes.VALOR_CERO);
-		if (opcion.equals(String.valueOf(Constantes.VALOR_UNO))) {
-			resultado = convertirNuevaUnidadesToArabicos(entradaEscaner, resultado);
-			System.out.println("El resultado es:" + resultado);
-		} else {
-			String numeroCantidadMetales = leerNumeroCantidadMetales(entradaEscaner);
-			metales = instanciarMetales(entradaEscaner, numeroCantidadMetales);
-			presentarMetalesAComercializar();
-			calcularEquivalenciaDeMetal(entradaEscaner, resultado);
-		}
+		/*
+		 * String opcion = presentarMenuDeOpciones(entradaEscaner); long
+		 * resultado = Long.valueOf(Constantes.VALOR_CERO); if
+		 * (opcion.equals(String.valueOf(Constantes.VALOR_UNO))) { resultado =
+		 * convertirNuevaUnidadesToArabicos(entradaEscaner, resultado);
+		 * System.out.println("El resultado es:" + resultado); } else { String
+		 * numeroCantidadMetales = leerNumeroCantidadMetales(entradaEscaner);
+		 * metales = instanciarMetales(entradaEscaner, numeroCantidadMetales);
+		 * presentarMetalesAComercializar();
+		 * calcularEquivalenciaDeMetal(entradaEscaner, resultado); }
+		 */
 	}
 
-	/**
-	 * <b> Calcula la equivalencia en arabicos del metal a comercializar. </b>
-	 * <p>
-	 * [Author: Marcelo Hidalgo, Date: 13/02/2014]
-	 * </p>
+	/*
+	 * /** <b> Calcula la equivalencia en arabicos del metal a comercializar.
+	 * </b> <p> [Author: Marcelo Hidalgo, Date: 13/02/2014] </p>
 	 *
 	 * @param entradaEscaner
+	 * 
 	 * @param resultado
 	 */
-	private static void calcularEquivalenciaDeMetal(Scanner entradaEscaner, long resultado) {
-		System.out.println("Ingrese el nombre del metal:");
-		String metal = entradaEscaner.nextLine();
-		while (Constantes.CADENA_VACIA.equals(Metal.obtenerValorSegunMetal(metales, metal))) {
-			System.out.println("Ingrese el nombre del metal:");
-			metal = entradaEscaner.nextLine();
-		}
-		String valorMetal = Metal.obtenerValorSegunMetal(metales, metal);
-		resultado = convertirNuevaUnidadesToArabicos(entradaEscaner, resultado);
-		resultado = resultado * Integer.valueOf(valorMetal);
-		System.out.println("El resultado es:" + resultado + " creditos");
-	}
+	// private static void calcularEquivalenciaDeMetal(Scanner entradaEscaner,
+	// long resultado) {
+	// System.out.println("Ingrese el nombre del metal:");
+	// String metal = entradaEscaner.nextLine();
+	// while
+	// (Constantes.CADENA_VACIA.equals(Metal.obtenerValorSegunMetal(metales,
+	// metal))) {
+	// System.out.println("Ingrese el nombre del metal:");
+	// metal = entradaEscaner.nextLine();
+	// }
+	// String valorMetal = Metal.obtenerValorSegunMetal(metales, metal);
+	// resultado = convertirNuevaUnidadesToArabicos(entradaEscaner, resultado);
+	// resultado = resultado * Integer.valueOf(valorMetal);
+	// System.out.println("El resultado es:" + resultado + " creditos");
+	// }
 
 	/**
 	 * <b> Presenta los metales a comercializar. </b>
@@ -87,10 +88,10 @@ public class Inicio {
 	 *
 	 */
 	private static void presentarMetalesAComercializar() {
-		System.out.println("---*** METALES A COMERCIALIZAR ***---");
-		for (Metal metal : metales) {
-			System.out.println(metal.getNombre().toUpperCase());
-		}
+		// System.out.println("---*** METALES A COMERCIALIZAR ***---");
+		// for (Metal metal : metales) {
+		// System.out.println(metal.getNombre().toUpperCase());
+		// }
 	}
 
 	/**
@@ -238,8 +239,8 @@ public class Inicio {
 	 *            nombre de la unidad
 	 * @return int valor de la unidad enviada, sino existe devuelve CERO
 	 */
-	public static int obtenerValorSegunNombreUnidad(List<Unidad> unidades, String nombreUnidad) {
-		int valor = Constantes.VALOR_CERO;
+	public static Double obtenerValorSegunNombreUnidad(List<Unidad> unidades, String nombreUnidad) {
+		Double valor = null;
 		for (Unidad unidad : unidades) {
 			if (unidad.getNombre().equals(nombreUnidad)) {
 				valor = unidad.getValor();
@@ -319,14 +320,16 @@ public class Inicio {
 	 *            cantidad de metales a comercializar
 	 * @return List<Metal> lista de unidades instanciadas
 	 */
-	private static List<Metal> instanciarMetales(Scanner entradaEscaner, String cantidadMetales) {
-		List<Metal> metales = new ArrayList<Metal>();
-		for (int i = Constantes.VALOR_UNO; i <= Integer.valueOf(cantidadMetales); i++) {
-			Metal metal = instanciarMetal(entradaEscaner, i, metales);
-			metales.add(metal);
-		}
-		return metales;
-	}
+	// private static List<Metal> instanciarMetales(Scanner entradaEscaner,
+	// String cantidadMetales) {
+	// List<Metal> metales = new ArrayList<Metal>();
+	// for (int i = Constantes.VALOR_UNO; i <= Integer.valueOf(cantidadMetales);
+	// i++) {
+	// Metal metal = instanciarMetal(entradaEscaner, i, metales);
+	// metales.add(metal);
+	// }
+	// return metales;
+	// }
 
 	/**
 	 * <b> Construye los objetos nuevos de unidad de medida. </b>
@@ -343,28 +346,41 @@ public class Inicio {
 	private static Unidad instanciarUnidad(Scanner entradaEscaner, int numeroUnidad, List<Unidad> unidades) {
 		System.out.print("Unidad " + numeroUnidad + ": Nombre:");
 		String nombre = entradaEscaner.nextLine();
-
-		// separo por medio de los espacios
-		String[] nombres = nombre.split("");
-		if(nombres.length > Constantes.VALOR_UNO){
-			// encuentro los valores posibles
-			for (String cadena : nombres) {
-				UnidadUtil.existUnitByName(unidades, cadena) ? 
-			}
-				
-		}
+		double valor = 0;
 
 		while (UnidadUtil.existUnitByName(unidades, nombre)) {
 			System.out.print("Unidad " + nombre + " existente, ingrese nuevamente");
 			nombre = entradaEscaner.nextLine();
 		}
+
+		// separo por medio de los espacios
+		String[] nombres = nombre.split(" ");
+
+		if (nombres.length > Constantes.VALOR_UNO) {
+			String unidadAtransformar = "";
+			// encuentro los valores posibles
+			for (String cadena : nombres) {
+				if (UnidadUtil.existUnitByName(unidades, cadena))
+					unidadAtransformar += cadena;
+				else
+					nombre = cadena;
+			}
+
+			// transformo ese valor
+			NumeroRomanoEnumUtil num = new NumeroRomanoEnumUtil(unidadAtransformar);
+			valor = num.toInt();
+			System.out.println("numero transformado es" + valor);
+		}
+
 		System.out.print("Unidad " + numeroUnidad + ": Valor( Arabicos / "
 				+ NumeroRomanoEnumUtil.obtenerSimbolosNumerosRomanos() + "):");
-		String valor = entradaEscaner.nextLine();
+		String valorIngresado = entradaEscaner.nextLine();
+
+		valor = valor != 0 ? Integer.valueOf(valorIngresado) / valor : Integer.valueOf(valorIngresado);
 
 		Unidad unidad = new Unidad();
 		unidad.setNombre(nombre);
-		unidad.setValor(Double.valueOf(valor));
+		unidad.setValor(valor);
 		return unidad;
 	}
 
@@ -380,22 +396,23 @@ public class Inicio {
 	 *            numero de la unidad a instanciar
 	 * @return Unidad devuelve la unidad instanciada
 	 */
-	private static Metal instanciarMetal(Scanner entradaEscaner, int numeroMetal, List<Metal> metales) {
-		String nombre;
-		String valor;
-		Metal metal = new Metal();
-		System.out.print("Metal " + numeroMetal + "):");
-		nombre = entradaEscaner.nextLine();
-		metal.setNombre(nombre);
-		System.out.print("Valor(creditos):");
-		valor = entradaEscaner.nextLine();
-		while (!NumeroUtil.esNumero(valor)) {
-			System.out.print("Valor incorrecto, ingrese nuevamente:");
-			valor = entradaEscaner.nextLine();
-		}
-		metal.setValor(valor);
-		return metal;
-	}
+	// private static Metal instanciarMetal(Scanner entradaEscaner, int
+	// numeroMetal, List<Metal> metales) {
+	// String nombre;
+	// String valor;
+	// Metal metal = new Metal();
+	// System.out.print("Metal " + numeroMetal + "):");
+	// nombre = entradaEscaner.nextLine();
+	// metal.setNombre(nombre);
+	// System.out.print("Valor(creditos):");
+	// valor = entradaEscaner.nextLine();
+	// while (!NumeroUtil.esNumero(valor)) {
+	// System.out.print("Valor incorrecto, ingrese nuevamente:");
+	// valor = entradaEscaner.nextLine();
+	// }
+	// metal.setValor(valor);
+	// return metal;
+	// }
 
 	/**
 	 * <b> Valida si la nueva unidad a registrar ya fue considerada
@@ -412,20 +429,23 @@ public class Inicio {
 	 *            de medida
 	 * @return Unidad unidad de medida
 	 */
-	public static Unidad validarExistenciaDeUnidadSegunSimbolo(List<Unidad> unidades, String simbolo, Unidad unidad) {
-		if (unidades.isEmpty()) {
-			unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
-		} else {
-			for (Unidad unidadAlmacenada : unidades) {
-				if (unidadAlmacenada.getValor() == asignarValorSegunNumeroRomano(simbolo.toUpperCase())) {
-					System.out.println("Ya existe una unidad almacenada con el mismo simbolo");
-				} else {
-					unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
-				}
-			}
-		}
-		return unidad;
-	}
+	// public static Unidad validarExistenciaDeUnidadSegunSimbolo(List<Unidad>
+	// unidades, String simbolo, Unidad unidad) {
+	// if (unidades.isEmpty()) {
+	// unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
+	// } else {
+	// for (Unidad unidadAlmacenada : unidades) {
+	// if (unidadAlmacenada.getValor() ==
+	// asignarValorSegunNumeroRomano(simbolo.toUpperCase())) {
+	// System.out.println("Ya existe una unidad almacenada con el mismo
+	// simbolo");
+	// } else {
+	// unidad.setValor(asignarValorSegunNumeroRomano(simbolo.toUpperCase()));
+	// }
+	// }
+	// }
+	// return unidad;
+	// }
 
 	/**
 	 * <b> Valida si el simbolo escogido para la nueva unidad es valido. </b>
