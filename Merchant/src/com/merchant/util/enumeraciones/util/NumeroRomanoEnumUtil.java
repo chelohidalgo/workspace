@@ -44,15 +44,18 @@ public final class NumeroRomanoEnumUtil {
 	 * @return NumeroRomanoEnum enumeracion resultante.
 	 */
 	public static NumeroRomanoEnum obtenerNumeroRomanoEnumPorSimbolo(final String simbolo) {
-		NumeroRomanoEnum romanoEnumEncontrado = null;
-		NumeroRomanoEnum[] numerosRomanosEnums = NumeroRomanoEnum.values();
-		for (int i = 0; i < numerosRomanosEnums.length; i++) {
-			if(numerosRomanosEnums[i].getSimbolo().equals(simbolo)) {
-				romanoEnumEncontrado = numerosRomanosEnums[i];
-				break;
+		if(simbolo != null){
+			NumeroRomanoEnum romanoEnumEncontrado = null;
+			NumeroRomanoEnum[] numerosRomanosEnums = NumeroRomanoEnum.values();
+			for (int i = 0; i < numerosRomanosEnums.length; i++) {
+				if(numerosRomanosEnums[i].getSimbolo().equals(simbolo.toUpperCase())) {
+					romanoEnumEncontrado = numerosRomanosEnums[i];
+					break;
+				}
 			}
+			return romanoEnumEncontrado;
 		}
-		return romanoEnumEncontrado;
+		return null;
 	}
 	
 	private final int num;   // The number represented by this Roman numeral.

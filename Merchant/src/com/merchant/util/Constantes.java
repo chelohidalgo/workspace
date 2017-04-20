@@ -17,6 +17,7 @@ public class Constantes {
 	
 	public static final int VALOR_CERO = 0;
 	public static final int VALOR_UNO = 1;
+	public static final int VALOR_SIETE = 7;
 	public static final String CADENA_VACIA = "";
 	public static final String CADENA_COMA = ",";
 	public static final String CADENA_VALOR_UNO = "1";
