@@ -1,0 +1,175 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myComunicationLabel" data-translate="jhipsterSampleApplicationApp.comunication.home.createOrEditLabel">Create or edit a Comunication</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <!--
+        <div class="form-group" ng-show="vm.comunication.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.comunication.id" readonly />
+        </div>
+        -->
+        <div class="form-group">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.protocol" for="field_protocol">Protocol</label>
+            <input type="number" class="form-control" name="protocol" id="field_protocol"
+                   ng-model="vm.comunication.protocol"
+                   required
+                   ng-readonly="vm.comunication.id ? true : false"/>
+            <div ng-show="editForm.protocol.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.protocol.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.protocol.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.producer" for="field_producer">Producer</label>
+            <input type="text" class="form-control" name="producer" id="field_producer"
+                   ng-model="vm.comunication.producer"
+                   required ng-minlength="5" ng-maxlength="50"
+                   ng-readonly="vm.comunication.id ? true : false"/>
+            <div ng-show="editForm.producer.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.producer.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.producer.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="5">
+                    This field is required to be at least 5 characters.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.producer.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="50">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ng-show="vm.comunication.id ? false : true ">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.type" for="field_type">Type</label>
+            <select class="form-control" name="type" id="field_type" ng-model="vm.comunication.type">
+                <option ng-repeat="option in vm.typeOptions" value="{{option.id}}">{{option.name}}</option>
+            </select>
+            <div ng-show="editForm.type.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.type.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ng-show="vm.comunication.id ? true : false">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.type" for="field_type_text">Type</label>
+            <input type="text" class="form-control" name="type_text" id="field_type_text"
+                   ng-model="vm.comunication.type"
+                   ng-readonly="vm.comunication.id ? true : false"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                   ng-model="vm.comunication.status"
+                   required ng-readonly="true"/>
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.status.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.description" for="field_description">Description</label>
+            <textarea class="form-control" name="description" id="field_description"
+                      ng-model="vm.comunication.description"
+                      required ng-minlength="5" ng-maxlength="300"
+                      ng-readonly="vm.comunication.id ? true : false"></textarea>
+            <div ng-show="editForm.description.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.description.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.description.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="5">
+                    This field is required to be at least 5 characters.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.description.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="300">
+                    This field cannot be longer than 300 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="table-responsive" ng-show="vm.comunication.id ? true : false">
+            <table class="jh-table table table-striped">
+                <thead>
+                <tr>
+                    <th><span data-translate="jhipsterSampleApplicationApp.comunication.status">Status</span></th>
+                    <th><span data-translate="jhipsterSampleApplicationApp.comunication.description">Description</span></th>
+                    <th><span data-translate="jhipsterSampleApplicationApp.comunication.date">Date </span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="comunicationHistory in vm.comunication.comunicationHistories">
+                    <td>{{comunicationHistory.status}}</td>
+                    <td>{{comunicationHistory.description}}</td>
+                    <td>{{comunicationHistory.registerDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-group" ng-show="vm.comunication.id ? true : false">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.response" for="field_response">Response</label>
+            <textarea class="form-control" name="response" id="field_response"
+                      ng-model="vm.comunication.response"
+                      ng-minlength="5" ng-maxlength="300"></textarea>
+            <div ng-show="editForm.response.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.response.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.response.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="5">
+                    This field is required to be at least 5 characters.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.response.$error.maxlength" data-translate="entity.validation.maxlength" translate-value-max="300">
+                    This field cannot be longer than 300 characters.
+                </p>
+            </div>
+        </div>
+
+        <!--
+        <div class="form-group">
+            <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.dateCreated" for="field_dateCreated">Date Created</label>
+                <div class="input-group">
+                    <input id="field_dateCreated" type="text" class="form-control" name="dateCreated" uib-datepicker-popup="{{dateformat}}" ng-model="vm.comunication.dateCreated" is-open="vm.datePickerOpenStatus.dateCreated"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateCreated')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.dateCreated.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.dateCreated.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

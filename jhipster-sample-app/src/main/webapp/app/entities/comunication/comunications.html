@@ -1,0 +1,126 @@
+<div>
+    <h2 data-translate="jhipsterSampleApplicationApp.comunication.home.title">Comunications</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="comunication.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="jhipsterSampleApplicationApp.comunication.home.createLabel">
+                        Create new Comunication
+                    </span>
+                </button>
+            </div>
+        </div><br>
+        <form name="filterForm" role="form" novalidate show-validation>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.protocol" for="field_protocol">Protocol</label>
+                    <input type="number" class="form-control" name="protocol" id="field_protocol"
+                           ng-model="vm.filters.protocol"/>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.startDate" for="field_startDate">Start Date</label>
+                    <div class="input-group">
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ng-model="vm.filters.startDate" uib-datepicker-popup="{{dateformat}}" is-open="vm.datePickerOpenStatus.startDate" required/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.producer" for="field_producer">Producer</label>
+                    <input type="text" class="form-control" name="producer" id="field_producer"
+                           ng-model="vm.filters.producer"/>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.endDate" for="field_endDate">End Date</label>
+                    <div class="input-group">
+                        <input id="field_endDate" type="text" class="form-control" name="endDate" ng-model="vm.filters.endDate" uib-datepicker-popup="{{dateformat}}" is-open="vm.datePickerOpenStatus.endDate" required/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openCalendar('endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <label class="control-label" data-translate="jhipsterSampleApplicationApp.comunication.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" id="field_status" ng-model="vm.filters.status">
+                        <option ng-repeat="option in vm.statusOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div><br>
+            <div class="row" style="text-align: center;">
+                <button type="button" class="btn btn-primary no-padding-center" ng-disabled="filterForm.$invalid" ng-click="vm.search()">
+                    <span class="glyphicon glyphicon-search"></span>&nbsp;<span data-translate="entity.action.search">Search</span>
+                </button>
+                <button type="button" class="btn btn-default" ng-click="vm.clear()">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;<span data-translate="entity.action.clear">Clear</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th jh-sort-by="protocol"><span data-translate="jhipsterSampleApplicationApp.comunication.protocol">Protocol</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="producer"><span data-translate="jhipsterSampleApplicationApp.comunication.producer">Producer</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="type"><span data-translate="jhipsterSampleApplicationApp.comunication.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="jhipsterSampleApplicationApp.comunication.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="jhipsterSampleApplicationApp.comunication.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!-- <th jh-sort-by="dateCreated"><span data-translate="jhipsterSampleApplicationApp.comunication.dateCreated">Date Created</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="comunication in vm.comunications track by comunication.id">
+                    <!-- <td><a ui-sref="comunication-detail({id:comunication.id})">{{comunication.id}}</a></td> -->
+                    <td>{{comunication.protocol}}</td>
+                    <td>{{comunication.producer}}</td>
+                    <td>{{comunication.type}}</td>
+                    <td>{{comunication.status}}</td>
+                    <td>{{comunication.description}}</td>
+                    <!-- <td>{{comunication.dateCreated | date:'mediumDate'}}</td> -->
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="comunication-detail({id:comunication.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.info"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="comunication.edit({id:comunication.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.response"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="comunication.delete({id:comunication.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.cancel"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="comunication.end({id:comunication.id})"
+                                    class="btn btn-success btn-sm" ng-show="vm.showFinalize" data-toggle="tooltip" title="">
+                                <span class="glyphicon glyphicon glyphicon-ok"></span>
+                                <!-- <span class="hidden-sm-down" data-translate="entity.action.finalize"></span>-->
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

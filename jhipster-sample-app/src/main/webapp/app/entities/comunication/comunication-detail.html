@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="jhipsterSampleApplicationApp.comunication.detail.title">Comunication</span> {{vm.comunication.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.protocol">Protocol</span></dt>
+        <dd>
+            <span>{{vm.comunication.protocol}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.producer">Producer</span></dt>
+        <dd>
+            <span>{{vm.comunication.producer}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.type">Type</span></dt>
+        <dd>
+            <span>{{vm.comunication.type}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.status">Status</span></dt>
+        <dd>
+            <span>{{vm.comunication.status}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.description">Description</span></dt>
+        <dd>
+            <span>{{vm.comunication.description}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterSampleApplicationApp.comunication.dateCreated">Date Created</span></dt>
+        <dd>
+            <span>{{vm.comunication.dateCreated | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="comunication-detail.edit({id:vm.comunication.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

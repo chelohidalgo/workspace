@@ -1,0 +1,31 @@
+{
+    "jhipsterSampleApplicationApp": {
+        "comunication" : {
+            "home": {
+                "title": "Comunications",
+                "createLabel": "Create",
+                "createOrEditLabel": "Create or edit a Comunication"
+            },
+            "created": "A new Comunication is created with identifier {{ param }}",
+            "updated": "A Comunication is updated with identifier {{ param }}",
+            "deleted": "A Comunication is cancel with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to cancel Comunication {{ id }}?"
+            },
+            "detail": {
+                "title": "Comunication"
+            },
+            "protocol": "Protocol",
+            "producer": "Producer",
+            "type": "Type",
+            "status": "Status",
+            "description": "Description",
+            "dateCreated": "Date Created",
+            "actions":"actions",
+            "startDate": "Start Date",
+            "endDate": "End date",
+            "response": "Response",
+            "date": "Date"
+        }
+    }
+}
