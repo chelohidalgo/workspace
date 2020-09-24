@@ -1,0 +1,13 @@
+<% include header %>
+<ul id="users">
+    <% users.forEach(function(user, index){ %>
+    <li>
+        <a href="/users/<%= user.id %>/view"><%= user.name %> <%= user.lastname %></a>
+        <a href="/users/<%= user.id %>/edit">edit</a>
+        <a href="/users/<%= user.id %>/remove">remove</a>
+    </li>
+    <% }) %>
+</ul>
+
+<a href="/users/new">Add user</a>
+<% include footer %>

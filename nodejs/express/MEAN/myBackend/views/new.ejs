@@ -1,0 +1,10 @@
+<% include header %>
+<form action="/users" method="POST">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <input type="text" placeholder="Name" name="name">
+  <input type="text" placeholder="Last name" name="lastname">
+  <input type="text" placeholder="Id" name="id">
+  <input type="text" placeholder="Age" name="age">
+  <button type="submit">Submit</button>
+</form>
+<% include footer%>
