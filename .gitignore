@@ -20,3 +20,9 @@ build
 ruleset.xml
 user.gradle
 bin/com/merchant
+terraform/terraform.tfstate
+*.tfstate
+*.tfstate.backup
+.terraform/providers/
+.terraform.lock.hcl
+.terraform/
