@@ -2,6 +2,8 @@ Project Examples
 
 microservices: Examples with microservices + ribbon load balancer + eureka name server
 
+terraform: Terraform practices to automate deployments
+
 nodejs: NodeJS examples with express.js + mongo
 
 test-spring-boot-mongodb-spring-services-incomplete : spring project with xml files(backend)
