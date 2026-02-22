@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weather Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        textarea { width: 80%; height: 100px; padding: 8px; margin: 10px; }
+        button { padding: 8px 12px; cursor: pointer; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Weather Agent</h1>
+    
+    <form action="/weatherAgent" method="post">
+        <label>Enter your query:</label>
+        <br>
+        <textarea name="query" required></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="result" th:if="${weatherInfo}">
+        <p>Weather Info: <span th:text="${weatherInfo}"></span></p>
+    </div>
+
+</body>
+</html>

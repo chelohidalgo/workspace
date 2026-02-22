@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Interview Helper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+        }
+
+        .response p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .response a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .response a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interview Helper</h1>
+        
+        <!-- Form Section -->
+        <form th:action="@{/interviewHelper}" method="post" th:if="${#strings.isEmpty(response)}">
+            <label for="company">Company Name:</label>
+            <input type="text" id="company" name="company" placeholder="Enter company name" required>
+
+            <label for="jobTitle">Job Title:</label>
+            <input type="text" id="jobTitle" name="jobTitle" placeholder="Enter job title" required>
+
+            <label for="strength">Your Strength:</label>
+            <input type="text" id="strength" name="strength" placeholder="Enter your strength" required>
+
+            <label for="weakness">Your Weakness:</label>
+            <input type="text" id="weakness" name="weakness" placeholder="Enter your weakness" required>
+
+            <button type="submit">Submit</button>
+        </form>
+        
+        <!-- Text Response Section -->
+        <div class="response" th:if="${!#strings.isEmpty(response)}">
+            <p><strong>Response:</strong> <span th:text="${response}"></span></p>
+            <a th:href="@{/showInterviewHelper}">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

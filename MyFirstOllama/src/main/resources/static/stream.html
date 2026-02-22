@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 h-screen flex items-center justify-center">
+    <div class="absolute top-0 left-0 w-full py-4">
+        <h1 class="text-5xl font-extrabold text-center text-gray-800">Streaming Chatbot</h1>
+    </div>
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-2xl">
+        <div id="chat-messages" class="space-y-4 mb-6 max-h-80 overflow-y-auto border-b pb-4">
+            <!-- Chat messages will appear here -->
+        </div>
+        <form id="chat-form" class="flex flex-col space-y-4">
+            <input type="text" id="message-input" class="w-full border border-gray-300 rounded-lg p-4 text-lg focus:ring focus:ring-blue-300" placeholder="Type your message..." required>
+            <button type="submit" class="bg-blue-600 text-white text-lg px-6 py-3 rounded-lg hover:bg-blue-700 transition">Send</button>
+        </form>
+    </div>
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            messageInput.value = '';
+            addMessage('You', message, 'bg-blue-100');
+
+            const aiMessageContainer = addMessage('AI', '', 'bg-green-100');
+            const aiMessageContent = aiMessageContainer.querySelector('span');
+
+            try {
+                const response = await fetchStreamWithRetry(`/stream?message=${encodeURIComponent(message)}`);
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    aiMessageContent.textContent += decoder.decode(value, { stream: true });
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                aiMessageContent.textContent = 'Error occurred while fetching the response.';
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        function addMessage(sender, text, bgColorClass) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${bgColorClass} p-3 rounded-lg`;
+            messageDiv.innerHTML = `<strong>${sender}:</strong> <span>${text}</span>`;
+            chatMessages.appendChild(messageDiv);
+            return messageDiv;
+        }
+
+        async function fetchStreamWithRetry(url, retries = 3) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url);
+                    if (response.ok) return response;
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

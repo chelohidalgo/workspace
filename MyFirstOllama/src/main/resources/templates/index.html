@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spring AI Project Home</title>
+	<style>
+		/* Reset and basic styles */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: Arial, sans-serif;
+		}
+
+		body {
+			background-color: #f5f7fa;
+			color: #333;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #4a90e2;
+			font-size: 2.5em;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 1.2em;
+			color: #666;
+			margin-bottom: 30px;
+		}
+
+		/* Container layout */
+		.container {
+			display: flex;
+			gap: 40px;
+			max-width: 900px;
+			width: 100%;
+		}
+
+		.column {
+			background-color: #fff;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			width: 45%;
+		}
+
+		.column h2 {
+			color: #4a90e2;
+			font-size: 1.5em;
+			margin-bottom: 15px;
+			border-bottom: 2px solid #4a90e2;
+			padding-bottom: 5px;
+		}
+
+		ul {
+			list-style-type: none;
+		}
+
+		li {
+			margin: 10px 0;
+		}
+
+		a {
+			color: #4a90e2;
+			text-decoration: none;
+			font-size: 1.1em;
+			transition: color 0.3s;
+		}
+
+		a:hover {
+			color: #2a6792;
+			text-decoration: underline;
+		}
+
+		/* Hover effect for columns */
+		.column:hover {
+			transform: translateY(-5px);
+			transition: transform 0.3s ease;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Welcome to the Spring AI Project</h1>
+	<p>Select a feature to explore:</p>
+
+	<div class="container">
+		<!-- Left Column -->
+		<div class="column">
+			<h2>Text</h2>
+			<ul>
+				<li><a href="/showAskAnything">Ask Anything</a></li>
+			</ul>
+
+			<h2>Prompt Templates</h2>
+			<ul>
+				<li><a href="/showTravelGuide">Travel Guide</a></li>
+				<li><a href="/showCuisineHelper">Cuisine Helper</a></li>
+			</ul>
+
+			<h2>Embeddings</h2>
+			<ul>
+				<li><a href="/showEmbedding">Embedding</a></li>
+				<li><a href="/showSimilarityFinder">Similarity Finder</a></li>
+				<li><a href="/showJobSearchHelper">Job Search Helper</a></li>
+			</ul>
+			<h2>RAG</h2>
+			<ul>
+				<li><a href="/showProductDataBot">Product Data Bot</a></li>
+			</ul>
+
+
+		</div>
+
+		<!-- Right Column -->
+		<div class="column">
+			<h2>Image/Vision</h2>
+			<ul>
+				<li><a href="/showImageGenerator">Image Generator</a></li>
+				<li><a href="/showImageAnalyzer">Image Analyzer</a></li>
+				<li><a href="/showDietHelper">Diet Helper</a></li>
+			</ul>
+
+			<h2>Speech/Voice</h2>
+			<ul>
+				<li><a href="/showSpeechToText">Speech to Text</a></li>
+				<li><a href="/showTextToSpeech">Text to Speech</a></li>
+			</ul>
+
+			<h2>Tool Calling</h2>
+			<ul>
+				<li><a href="/showWeatherAgent">Weather Agent</a></li>
+			</ul>
+			<h2>Moderations</h2>
+			<ul>
+				<li><a href="/showModeration">Moderations</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>
