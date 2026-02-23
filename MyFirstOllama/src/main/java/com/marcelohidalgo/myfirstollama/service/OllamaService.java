@@ -11,8 +11,6 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
-import org.springframework.ai.moderation.ModerationPrompt;
-import org.springframework.ai.moderation.ModerationResult;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.core.io.FileSystemResource;
@@ -38,52 +36,44 @@ public class OllamaService {
 
     public ChatResponse generateAnswer(String question) {
         return chatClient.prompt(question).call().chatResponse();
-
-        // not required because I'm using from application.properties
-//        return chatClient.prompt(Prompt.builder()
-//                        .content(question)
-//                        .chatOptions(ChatOptions.builder()
-//                                .model("gpt-4o")
-//                                .maxTokens(20)
-//                                .temperature(0.3)
-//                                .build())
-//                        .build())
-//                .call().chatResponse();
     }
 
     public String getTravelGuidance(String city, String month, String language, String budget) {
-        PromptTemplate promptTemplate = new PromptTemplate("Welcome to the {city} travel guide!\n"
-                + "If you're visiting in {month}, here's what you can do:\n" + "1. Must-visit attractions.\n"
-                + "2. Local cuisine you must try.\n" + "3. Useful phrases in {language}.\n"
-                + "4. Tips for traveling on a {budget} budget.\n" + "Enjoy your trip!");
-        Prompt prompt = promptTemplate
-                .create(Map.of("city", city, "month", month, "language", language, "budget", budget));
+        PromptTemplate promptTemplate = new PromptTemplate("""
+                Welcome to the {city} travel guide! If you're visiting in {month}, here's what you can do: 
+                1. Must-visit attractions. 
+                2. Local cuisine you must try. 
+                3. Useful phrases in {language}. 
+                4. Tips for traveling on a {budget} budget. 
+                Enjoy your trip!
+                """);
+        Prompt prompt = promptTemplate.create(Map.of("city", city, "month", month, "language", language, "budget", budget));
 
         return chatClient.prompt(prompt).call().chatResponse().getResult().getOutput().getText();
     }
 
     public CountryCuisines getCuisines(String country, String numCuisines, String language) {
-        PromptTemplate promptTemplate = new PromptTemplate("You are an expert in traditional cuisines.\n"
-                + "Answer the question: What is the traditional cuisine of {country}?\n"
-                + "Return a list of {numCuisines} in {language}.\n" + "You provide information about a specific dish \n"
-                + "from a specific country.\n" + "Avoid giving information about fictional places.\n"
-                + "If the country is fictional or non-existent \n" + "return the country with out any cuisines.");
+        PromptTemplate promptTemplate = new PromptTemplate("""
+                You are an expert in traditional cuisines. Answer the question: 
+                What is the traditional cuisine of {country}? 
+                Return a list of {numCuisines} in {language}. 
+                You provide information about a specific dish from a specific country. 
+                Avoid giving information about fictional places. 
+                If the country is fictional or non-existent return the country with out any cuisines.
+                """);
 
-        Prompt prompt = promptTemplate
-                .create(Map.of("country", country, "numCuisines", numCuisines, "language", language));
+        Prompt prompt = promptTemplate.create(Map.of("country", country, "numCuisines", numCuisines, "language", language));
 
         return chatClient.prompt(prompt).call().entity(CountryCuisines.class);
     }
 
     public String getInterview(String company, String jobTitle, String strength, String weakness) {
         PromptTemplate promptTemplate = new PromptTemplate("""
-                pretend you have are a experienced software engineer with more than 10 years of experience in Retail 
-                and Ecommerce industries, java is your main programming language, you have worked in different projects
-                 and different tech stack specially with springboot, maven, aws, redis, postgres, ci and cd with jenkins,
-                  gitlab, splunk, grafana, datadog and you have an interview with the company {company} for the job 
-                  position {jobTitle} and you strongest strength is {strength} and weakness is {weakness}, so your task
-                   is to provide me step by step the best tips for this interview in java and give me some behavioral 
-                   questions and answers following STAR framework where each of them are 200 words accurate and simple.
+                Pretend you have are a experienced software engineer with more than 10 years of experience in IT, java
+                is your main programming language, you have worked in different projects and different tech stack and
+                you have an interview with the company {company} for the job position {jobTitle} and your strength is 
+                {strength} and weakness is {weakness}, so your task is to provide me step by step the best tips for 
+                this interview.
                 """);
         Prompt prompt = promptTemplate.create(Map.of("company", company, "jobTitle", jobTitle, "strength", strength, "weakness", weakness));
         return chatClient.prompt(prompt).call().chatResponse().getResult().getOutput().getText();
@@ -99,7 +89,6 @@ public class OllamaService {
     }
 
     public String answer(String query) {
-        //return chatClient.prompt(query).advisors(new QuestionAnswerAdvisor(vectorStore)).call().content();
         return chatClient.prompt(query).advisors(QuestionAnswerAdvisor.builder(vectorStore).build()).call().content();
     }
 
@@ -108,9 +97,7 @@ public class OllamaService {
     }
 
     public String explainImage(String prompt, String path) {
-        return chatClient.prompt()
-                .user(user -> user.text(prompt).media(MimeTypeUtils.IMAGE_JPEG, new FileSystemResource(path)))
-                .call().content();
+        return chatClient.prompt().user(user -> user.text(prompt).media(MimeTypeUtils.IMAGE_JPEG, new FileSystemResource(path))).call().content();
     }
 
     public String callAgent(String query) {

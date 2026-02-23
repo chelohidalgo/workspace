@@ -8,24 +8,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class LegalDataBot {
+public class ProductDataBotController {
 
     private final OllamaService service;
 
-    public LegalDataBot(OllamaService service) {
+    public ProductDataBotController(OllamaService service) {
         this.service = service;
     }
 
-    @GetMapping("/showLegalDataBot")
-    public String showLegalDataBot() {
-        return "legalDataBot";
-
+    @GetMapping("/showProductDataBot")
+    public String showProductDataBot() {
+        return "productDataBot";
     }
 
-    @PostMapping("/legalDataBot")
-    public String legalDataBot(@RequestParam String query, Model model) {
-        model.addAttribute("response",service.answerLegal(query));
-        return "legalDataBot";
-
+    @PostMapping("/productDataBot")
+    public String productDataBot(@RequestParam String query, Model model) {
+        model.addAttribute("response", service.answer(query));
+        return "productDataBot";
     }
+
 }

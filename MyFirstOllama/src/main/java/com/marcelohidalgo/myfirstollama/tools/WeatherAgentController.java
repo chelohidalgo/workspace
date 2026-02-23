@@ -1,7 +1,6 @@
 package com.marcelohidalgo.myfirstollama.tools;
 
 import com.marcelohidalgo.myfirstollama.service.OllamaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WeatherAgentController {
 
-	@Autowired
-	private OllamaService service;
+    private final OllamaService service;
 
-	@GetMapping("/showWeatherAgent")
-	public String showWeatherAgent() {
-		return "weatherTool";
-	}
+    public WeatherAgentController(OllamaService service) {
+        this.service = service;
+    }
 
-	@PostMapping("/weatherAgent")
-	public String weatherAgent(@RequestParam("query") String query, Model model) {
-		String response = service.callAgent(query);
-		model.addAttribute("weatherInfo", response);
-		return "weatherTool";
-	}
+    @GetMapping("/showWeatherAgent")
+    public String showWeatherAgent() {
+        return "weatherTool";
+    }
+
+    @PostMapping("/weatherAgent")
+    public String weatherAgent(@RequestParam("query") String query, Model model) {
+        String response = service.callAgent(query);
+        model.addAttribute("weatherInfo", response);
+        return "weatherTool";
+    }
 }

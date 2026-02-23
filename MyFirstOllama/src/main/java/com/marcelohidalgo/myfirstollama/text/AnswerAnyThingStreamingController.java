@@ -18,7 +18,6 @@ public class AnswerAnyThingStreamingController {
     @GetMapping("/stream")
     public Flux<String> askAnything(@RequestParam("message") String message) {
         return service.streamAnswer(message);
-
     }
 
 }

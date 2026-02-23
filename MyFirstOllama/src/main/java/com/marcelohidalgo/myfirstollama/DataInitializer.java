@@ -21,17 +21,17 @@ public class DataInitializer {
 
     @PostConstruct
     public void init() {
-//        TextReader jobReader = new TextReader(new ClassPathResource("job_listings.txt"));
-//        TokenTextSplitter tokenTextSplitter = new TokenTextSplitter(100,100,5,1000,true);
-//        List<Document> documents = tokenTextSplitter.split(jobReader.get());
-//        vectorStore.add(documents);
-//
-//        TextReader productReader = new TextReader(new ClassPathResource("product-data.txt"));
-//        List<Document> productDocuments = tokenTextSplitter.split(productReader.get());
-//        vectorStore.add(productDocuments);
-//
-//        TextReader legalReader = new TextReader(new ClassPathResource("legal-data.txt"));
-//        List<Document> legalDocuments = tokenTextSplitter.split(legalReader.get());
-//        vectorStore.add(legalDocuments);
+        TextReader jobReader = new TextReader(new ClassPathResource("job_listings.txt"));
+        TokenTextSplitter tokenTextSplitter = new TokenTextSplitter(100, 100, 5, 1000, true);
+        List<Document> documents = tokenTextSplitter.split(jobReader.get());
+        vectorStore.add(documents);
+
+        TextReader productReader = new TextReader(new ClassPathResource("product-data.txt"));
+        List<Document> productDocuments = tokenTextSplitter.split(productReader.get());
+        vectorStore.add(productDocuments);
+
+        TextReader legalReader = new TextReader(new ClassPathResource("legal-data.txt"));
+        List<Document> legalDocuments = tokenTextSplitter.split(legalReader.get());
+        vectorStore.add(legalDocuments);
     }
 }

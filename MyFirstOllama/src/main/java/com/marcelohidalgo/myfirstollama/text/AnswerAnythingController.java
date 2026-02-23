@@ -9,25 +9,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class AnswerAnything {
+public class AnswerAnythingController {
 
     private final OllamaService service;
 
-    public AnswerAnything(OllamaService service) {
+    public AnswerAnythingController(OllamaService service) {
         this.service = service;
     }
 
     @GetMapping
-    public String showAnythingPage(){
+    public String showAnythingPage() {
         return "askAnything";
     }
 
     @PostMapping("/askAnything")
     public String askAnything(@RequestParam("question") String question, Model model) {
         ChatResponse response = service.generateAnswer(question);
-        System.out.println(response);
-        model.addAttribute("question",question);
-        model.addAttribute("answer",response.getResult().getOutput().getText());
+        model.addAttribute("question", question);
+        model.addAttribute("answer", response.getResult().getOutput().getText());
         return "askAnything";
     }
 }

@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class InterviewHelper {
+public class InterviewHelperController {
 
     private final OllamaService service;
 
-    public InterviewHelper(OllamaService service) {
+    public InterviewHelperController(OllamaService service) {
         this.service = service;
     }
 
@@ -27,7 +27,7 @@ public class InterviewHelper {
                                   @RequestParam("strength") String strength,
                                   @RequestParam("weakness") String weakness, Model model) {
         String response = service.getInterview(company, jobTitle, strength, weakness);
-        model.addAttribute("response",response);
+        model.addAttribute("response", response);
         return "interviewHelper";
     }
 }
