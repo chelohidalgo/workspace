@@ -1,5 +1,9 @@
 Project Examples
 
+MyFirstOllama: Spring AI project using ollama LLMs 
+
+JavaBestPracticesSourceCode: Java best practices for software development
+
 microservices: Examples with microservices + ribbon load balancer + eureka name server
 
 terraform: Terraform practices to automate deployments
@@ -14,8 +18,6 @@ test-spring-boot-mysql: Microservice in Java + angular
 
 picoplaca-predictor : Java project exploring refactoring, SOLID principles, clean code
 
-java-challenges/src/com/hidalgo: Java projects as a challenges about loops, performance, concurrency
-
 angular-project/my-first-app : Angular project
 
 jhipster-sample-app: JHIPSTER project 
@@ -23,8 +25,6 @@ jhipster-sample-app: JHIPSTER project
 Cowprod : Java project with DAO Pattern, JPA, EJB 3.0, JSF, ANT
 
 cajaChica: Java Project with apache Tom EE
-
-java-challenges/src/com/hidalgo: Java projects as a challenges about loops, performance, concurrency
 
 jdk9-jigsaw : Java 9 Ecuador Java User Group
 
